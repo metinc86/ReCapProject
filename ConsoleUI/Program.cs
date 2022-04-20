@@ -10,17 +10,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //CarTest(); 
-            BrandTest();
+            CarTest(); 
+            //BrandTest();
         }
 
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            Customer customer1 = new Customer { UserId = 2, CompanyName = "Atlas Copco" };
-            customerManager.Add(customer1);
             foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine(brand.BrandName);
@@ -30,7 +27,6 @@ namespace ConsoleUI
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-
             var result = carManager.GetCarDetails();
             if (result.Success == true)
             {
