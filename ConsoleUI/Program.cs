@@ -10,15 +10,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarTest(); 
-            //BrandTest();
+            //CarTest(); 
+            BrandTest();
         }
 
         private static void BrandTest()
         {
-            BrandManager brandManager = new BrandManager(new EfBrandDal()); 
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            foreach (var brand in brandManager.GetAll())
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Customer customer1 = new Customer { UserId = 2, CompanyName = "Atlas Copco" };
+            customerManager.Add(customer1);
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine(brand.BrandName);
             }
